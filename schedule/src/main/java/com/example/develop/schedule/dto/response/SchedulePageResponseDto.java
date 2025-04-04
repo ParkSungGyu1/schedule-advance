@@ -24,4 +24,15 @@ public class SchedulePageResponseDto {
         this.updatedAt = updatedAt;
         this.userName = userName;
     }
+
+    public SchedulePageResponseDto(Long id, String title, String content, Long commentCount,
+                                   LocalDateTime createdAt, LocalDateTime updatedAt, String userName) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.commentCount = Math.toIntExact(commentCount);
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.userName = userName;
+    }
 }

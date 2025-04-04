@@ -104,6 +104,7 @@ public class ScheduleService {
         PageRequest pageable = PageRequest.of(adjustedPage, size, Sort.by("updatedAt").descending());
         // 1. Schedule Page 조회
         Page<Schedule> schedulePage = scheduleRepository.findAll(pageable);
+        //Page<SchedulePageResponseDto> schedulePage2 = scheduleRepository.findSchedulePageWithCommentCount(pageable);
         // 2. 일정 ID 리스트 추출
         List<Long> scheduleIds = schedulePage.stream()
                 .map(Schedule::getId)
