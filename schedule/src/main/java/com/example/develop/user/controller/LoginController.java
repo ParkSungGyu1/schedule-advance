@@ -4,6 +4,7 @@ import com.example.develop.user.dto.request.LoginRequestDto;
 import com.example.develop.user.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +18,7 @@ public class LoginController {
     private final UserService userService;
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequestDto dto, HttpServletRequest request) {
+    public ResponseEntity<String> login(@Valid @RequestBody LoginRequestDto dto, HttpServletRequest request) {
 
         Long userId = userService.handleLogin(dto);
 

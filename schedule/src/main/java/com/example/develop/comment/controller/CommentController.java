@@ -4,6 +4,7 @@ import com.example.develop.comment.dto.request.CommentSaveRequestDto;
 import com.example.develop.comment.dto.request.CommentUpdateRequestDto;
 import com.example.develop.comment.dto.response.CommentResponseDto;
 import com.example.develop.comment.service.CommentService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class CommentController {
     public ResponseEntity<CommentResponseDto> save(
             @SessionAttribute(name = "LOGIN_USER") Long userId,
             @PathVariable Long scheduleId,
-            @RequestBody CommentSaveRequestDto dto
+            @Valid @RequestBody CommentSaveRequestDto dto
     ) {
         return ResponseEntity.ok(commentService.save(userId, scheduleId, dto));
     }
@@ -39,7 +40,7 @@ public class CommentController {
     public ResponseEntity<CommentResponseDto> update(
             @SessionAttribute(name = "LOGIN_USER") Long userId,
             @PathVariable Long id,
-            @RequestBody CommentUpdateRequestDto dto
+            @Valid @RequestBody CommentUpdateRequestDto dto
     ) {
         return ResponseEntity.ok(commentService.update(id, userId, dto));
     }

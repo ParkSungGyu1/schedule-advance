@@ -8,6 +8,7 @@ import com.example.develop.schedule.dto.response.ScheduleResponseDto;
 import com.example.develop.schedule.dto.response.ScheduleSaveResponseDto;
 import com.example.develop.schedule.dto.response.ScheduleUpdateResponseDto;
 import com.example.develop.schedule.service.ScheduleService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class ScheduleController {
     @PostMapping("/schedules")
     public ResponseEntity<ScheduleSaveResponseDto> save(
             @SessionAttribute(name = Const.LOGIN_USER) Long userId,
-            @RequestBody ScheduleSaveRequestDto dto
+            @Valid @RequestBody ScheduleSaveRequestDto dto
     ) {
         return ResponseEntity.ok(scheduleService.save(userId, dto));
     }
@@ -43,7 +44,7 @@ public class ScheduleController {
     public ResponseEntity<ScheduleUpdateResponseDto> update(
             @SessionAttribute(name = Const.LOGIN_USER) Long userId,
             @PathVariable Long id,
-            @RequestBody ScheduleUpdateRequestDto dto
+            @Valid @RequestBody ScheduleUpdateRequestDto dto
     ) {
         return ResponseEntity.ok(scheduleService.update(id, userId, dto));
     }

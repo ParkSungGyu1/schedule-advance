@@ -7,6 +7,7 @@ import com.example.develop.user.dto.response.UserResponseDto;
 import com.example.develop.user.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/users/signup")
-    public ResponseEntity<UserResponseDto> signup(@RequestBody UserSaveRequestDto dto) {
+    public ResponseEntity<UserResponseDto> signup(@Valid @RequestBody UserSaveRequestDto dto) {
         return ResponseEntity.ok(userService.save(dto));
     }
 
@@ -37,7 +38,7 @@ public class UserController {
     @PutMapping("/users/me")
     public ResponseEntity<UserResponseDto> update(
             @SessionAttribute(name = Const.LOGIN_USER) Long userId,
-            @RequestBody UserUpdateRequestDto dto
+            @Valid @RequestBody UserUpdateRequestDto dto
     ) {
         return ResponseEntity.ok(userService.update(userId, dto));
     }
